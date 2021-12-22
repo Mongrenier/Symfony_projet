@@ -33,22 +33,24 @@ class Application
     private $admin_comment;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    private $date_created;
+    private $date_creation;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date_rejected;
+    private $date_rejection;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="applications")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=animal::class, inversedBy="applications")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $animal_id;
 
@@ -93,48 +95,48 @@ class Application
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->date_created;
+        return $this->date_creation;
     }
 
-    public function setDateCreated(\DateTimeInterface $date_created): self
+    public function setDateCreation(\DateTimeInterface $date_creation): self
     {
-        $this->date_created = $date_created;
+        $this->date_creation = $date_creation;
 
         return $this;
     }
 
-    public function getDateRejected(): ?\DateTimeInterface
+    public function getDateRejection(): ?\DateTimeInterface
     {
-        return $this->date_rejected;
+        return $this->date_rejection;
     }
 
-    public function setDateRejected(?\DateTimeInterface $date_rejected): self
+    public function setDateRejection(?\DateTimeInterface $date_rejection): self
     {
-        $this->date_rejected = $date_rejected;
+        $this->date_rejection = $date_rejection;
 
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): ?user
     {
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(?user $user_id): self
     {
         $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getAnimalId(): ?int
+    public function getAnimalId(): ?animal
     {
         return $this->animal_id;
     }
 
-    public function setAnimalId(int $animal_id): self
+    public function setAnimalId(?animal $animal_id): self
     {
         $this->animal_id = $animal_id;
 

@@ -23,12 +23,14 @@ class Cart
     private $quantity;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="carts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=product::class, inversedBy="carts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product_id;
 
@@ -49,24 +51,24 @@ class Cart
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): ?user
     {
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(?user $user_id): self
     {
         $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getProductId(): ?int
+    public function getProductId(): ?product
     {
         return $this->product_id;
     }
 
-    public function setProductId(int $product_id): self
+    public function setProductId(?product $product_id): self
     {
         $this->product_id = $product_id;
 

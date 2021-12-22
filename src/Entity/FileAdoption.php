@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\FileRepository;
+use App\Repository\FileAdoptionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FileRepository::class)
+ * @ORM\Entity(repositoryClass=FileAdoptionRepository::class)
  */
-class File
+class FileAdoption
 {
     /**
      * @ORM\Id
@@ -28,32 +28,34 @@ class File
     private $admin_comment;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $cni;
+    private $nic;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $adoption_form;
+    private $form_adoption;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    private $date_created;
+    private $date_creation;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_decision;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="fileAdoptions")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=animal::class, inversedBy="fileAdoptions")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $animal_id;
 
@@ -86,38 +88,38 @@ class File
         return $this;
     }
 
-    public function getCni(): ?string
+    public function getNic(): ?string
     {
-        return $this->cni;
+        return $this->nic;
     }
 
-    public function setCni(?string $cni): self
+    public function setNic(string $nic): self
     {
-        $this->cni = $cni;
+        $this->nic = $nic;
 
         return $this;
     }
 
-    public function getAdoptionForm(): ?string
+    public function getFormAdoption(): ?string
     {
-        return $this->adoption_form;
+        return $this->form_adoption;
     }
 
-    public function setAdoptionForm(?string $adoption_form): self
+    public function setFormAdoption(string $form_adoption): self
     {
-        $this->adoption_form = $adoption_form;
+        $this->form_adoption = $form_adoption;
 
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->date_created;
+        return $this->date_creation;
     }
 
-    public function setDateCreated(\DateTimeInterface $date_created): self
+    public function setDateCreation(\DateTimeInterface $date_creation): self
     {
-        $this->date_created = $date_created;
+        $this->date_creation = $date_creation;
 
         return $this;
     }
@@ -134,24 +136,24 @@ class File
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): ?user
     {
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUserId(?user $user_id): self
     {
         $this->user_id = $user_id;
 
         return $this;
     }
 
-    public function getAnimalId(): ?int
+    public function getAnimalId(): ?animal
     {
         return $this->animal_id;
     }
 
-    public function setAnimalId(int $animal_id): self
+    public function setAnimalId(?animal $animal_id): self
     {
         $this->animal_id = $animal_id;
 

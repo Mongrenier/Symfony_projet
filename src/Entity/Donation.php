@@ -20,11 +20,6 @@ class Donation
     /**
      * @ORM\Column(type="integer")
      */
-    private $user_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $amount;
 
     /**
@@ -32,21 +27,15 @@ class Donation
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="donations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user_id;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
     }
 
     public function getAmount(): ?int
@@ -69,6 +58,18 @@ class Donation
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUserId(): ?user
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?user $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }
