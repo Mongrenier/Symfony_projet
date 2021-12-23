@@ -61,14 +61,9 @@ class Animal
     private $description;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_arrival;
-    
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $date;
 
     public function __construct()
     {
