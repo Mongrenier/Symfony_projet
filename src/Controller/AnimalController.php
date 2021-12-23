@@ -11,8 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/animal', name: 'animal_')]
 class AnimalController extends AbstractController
 {
-    private ManagerRegistry $doctrine;
-
+    
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->doctrine = $doctrine;
