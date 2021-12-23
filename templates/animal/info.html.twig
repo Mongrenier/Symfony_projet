@@ -39,7 +39,7 @@
         <div class="info-container">
             <div>
                 {% if animal.picture %}
-                    <img src="{{ asset("/img/" ~ animal.picture) }}" alt="animal_image">
+                    <img src="{{ asset("/img/uploads/" ~ animal.picture) }}" alt="animal_image" width="550">
                 {% else %}
                     <img src="/img/default_picture.jpg" alt="default_picture" width="550" >
                 {% endif %}
@@ -48,8 +48,14 @@
                 <ul class="list-group">
                     <li class="list-group-item"><h3>{{ "name" | trans }} {{ animal.name }}</h3></li>
                     <li class="list-group-item">{{ "age" | trans }} {{ animal.age }} an(s) </li>
-                    <li class="list-group-item"> {{ "date_arrival" | trans }} {#{{ animal.date_arrival }}#}</li> {#TODO ajouter "date_arrival" dans la db#}
-                    <li class="list-group-item">{{ "description" | trans }} {#{{ animal.description }}#}</li> {#TODO ajouter description dans la base de données#}
+                    <li class="list-group-item"> {{ "date_arrival" | trans }} {{ animal.datearrival | date('d/m/Y') }}</li>
+                    <li class="list-group-item">
+                        {% if animal.description  %}
+                            {{ "description" | trans }} {{ animal.description }}
+                        {% else %}
+                            {{ "no-desc" | trans }}
+                        {% endif %}
+                    </li>
                 </ul>
                 <a class="btn btn-primary  btn-adopt" href="#" role="button">{{ "adopt" | trans }}</a> {#TODO Mettre la bonne route au formulaire#}
             </div>

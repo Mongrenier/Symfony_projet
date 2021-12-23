@@ -55,6 +55,16 @@ class Animal
      */
     private $fileAdoptions;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_arrival;
+
     public function __construct()
     {
         $this->applications = new ArrayCollection();
@@ -182,6 +192,30 @@ class Animal
                 $fileAdoption->setAnimalId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDateArrival(): ?\DateTimeInterface
+    {
+        return $this->date_arrival;
+    }
+
+    public function setDateArrival(\DateTimeInterface $date_arrival): self
+    {
+        $this->date_arrival = $date_arrival;
 
         return $this;
     }

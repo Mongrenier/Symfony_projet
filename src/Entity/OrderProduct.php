@@ -29,7 +29,7 @@ class OrderProduct
     private $product_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=order::class, inversedBy="orderProducts")
+     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="orderProducts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $order_id;
