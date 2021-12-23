@@ -23,7 +23,7 @@ class Cart
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="carts")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="carts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;

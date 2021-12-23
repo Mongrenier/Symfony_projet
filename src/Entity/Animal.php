@@ -40,7 +40,7 @@ class Animal
     private $picture;
 
     /**
-     * @ORM\ManyToOne(targetEntity=category::class, inversedBy="animals")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="animals")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category_id;

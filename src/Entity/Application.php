@@ -43,7 +43,7 @@ class Application
     private $date_rejection;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;

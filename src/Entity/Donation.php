@@ -28,7 +28,7 @@ class Donation
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="donations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="donations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user_id;
