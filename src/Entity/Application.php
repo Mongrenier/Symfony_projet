@@ -49,7 +49,7 @@ class Application
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=animal::class, inversedBy="applications")
+     * @ORM\ManyToOne(targetEntity=Animal::class, inversedBy="applications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $animal_id;
