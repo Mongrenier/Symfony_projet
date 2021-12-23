@@ -56,6 +56,7 @@ class Animal
     private $fileAdoptions;
 
     /**
+<<<<<<< Updated upstream
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
@@ -64,6 +65,11 @@ class Animal
      * @ORM\Column(type="date")
      */
     private $date_arrival;
+=======
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date;
+>>>>>>> Stashed changes
 
     public function __construct()
     {

@@ -20,21 +20,17 @@ class AnimalRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Animal[] Returns an array of Animal objects
+    //  * @return Return animals which have a date diff less than 30 days with today
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByDate()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('DATE_DIFF(a.date, CURRENT_DATE()) <= 30')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Animal
