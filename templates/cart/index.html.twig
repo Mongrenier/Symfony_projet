@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Cart!
+{% endblock %}
+
+{% block body %}
+
+
+	<style>
+
+
+		.grosBlock {
+			margin-top: 50px;
+		}
+		.nomProduit {
+			text-align: center;
+		}
+		.quantityProduit,
+		.prixProduit,
+		.cadreBoutton {
+			display: flex;
+			justify-content: center;
+		}
+
+		.bouttonSupprimer {
+			display: flex;
+			justify-content: center;
+
+		}
+		.titreCategorie {
+			text-align: center;
+			border-bottom: solid 1px black;
+			padding-bottom: 10px;
+		}
+		.deuxiemeBloc {
+			margin-top: 60px;
+		}
+	</style>
+
+
+	<h1 style="text-align: center; margin-top: 20px">Votre Panier</h1><br>
+
+	<div class="container grosBlock">
+		<div class="row">
+			<h2 class="col-3 titreCategorie">Nom du produit</h2>
+			<h2 class="col-3 titreCategorie">Quantité</h2>
+			<h2 class="col-3 titreCategorie">Prix</h2>
+			<h2 class="col-3 titreCategorie">Supprimer du panier</h2>
+		</div>
+
+		<ul class="list-group list-group-flush deuxiemeBloc">
+			{% for panier in Cart %}
+				<li class="list-group-item">
+					<div class="row g-5">
+						<h3 class="col-3 nomProduit">{{ panier.productid.name }}</h3>
+						<h3 class="col-3 quantityProduit">{{ panier.quantity }}</h3>
+
+						{% if(panier.quantity > 1) %}
+
+							<h3 class="col-3 prixProduit">{{ panier.productid.price * panier.quantity }}€</h3>
+
+
+						{% else %}
+
+							<h3 class="col-3 prixProduit">{{ panier.productid.price }}€</h3>
+
+
+						{% endif %}
+						<div class="col-3 cadreBoutton">
+							<button type="button" class="btn btn-primary w-50 bouttonSupprimer">Supprimer</button>
+						</div>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
+{% endblock %}

@@ -29,7 +29,7 @@ class Cart
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=product::class, inversedBy="carts")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="carts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $product_id;
