@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 1000px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+        .info-container {
+            display: flex;
+            justify-content: center;
+        }
+        .info-about-animal {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .list-group {
+            padding-left: 10px;
+        }
+        .list-group-item {
+            padding-left: 50px;
+        }
+        .btn-adopt {
+            width: fit-content;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <div class="info-container">
+            <div>
+                {% if animal.picture %}
+                    <img src="{{ asset("/img/" ~ animal.picture) }}" alt="animal_image">
+                {% else %}
+                    <img src="/img/default_picture.jpg" alt="default_picture" width="550" >
+                {% endif %}
+            </div>
+            <div class="info-about-animal">
+                <ul class="list-group">
+                    <li class="list-group-item"><h3>{{ "name" | trans }} {{ animal.name }}</h3></li>
+                    <li class="list-group-item">{{ "age" | trans }} {{ animal.age }} an(s) </li>
+                    <li class="list-group-item"> {{ "date_arrival" | trans }} {#{{ animal.date_arrival }}#}</li> {#TODO ajouter "date_arrival" dans la db#}
+                    <li class="list-group-item">{{ "description" | trans }} {#{{ animal.description }}#}</li> {#TODO ajouter description dans la base de données#}
+                </ul>
+                <a class="btn btn-primary  btn-adopt" href="#" role="button">{{ "adopt" | trans }}</a> {#TODO Mettre la bonne route au formulaire#}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
