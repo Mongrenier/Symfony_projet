@@ -26,7 +26,7 @@ class AnimalRepository extends ServiceEntityRepository
     public function findByDate()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('DATE_DIFF(a.date, CURRENT_DATE()) <= 30')
+            ->andWhere('DATE_DIFF(a.date_arrival, CURRENT_DATE()) <= 30')
             ->getQuery()
             ->getResult()
         ;
