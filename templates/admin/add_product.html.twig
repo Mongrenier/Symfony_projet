@@ -1,0 +1,69 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+        .div-btn-submit {
+            display: flex;
+            justify-content: center;
+        }
+        .btn-submit {
+            background-color: blue;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            padding: 0.3em 1em;
+        }
+        .add-animal-title {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="add-animal-title">{{ "appendProduct" | trans }}</h1>
+        {{ form_start(form) }}
+        <div class="form-floating mb-3">
+            {# form_widget  #}
+            {{ form_widget(form.name, {attr: {class: "form-control", placeholder: "Titre"}})}}
+            {{ form_label(form.name)}}
+            {{ form_errors(form.name)}}
+        </div>
+        <div class="form-floating mb-3">
+            {{ form_widget(form.stock, {attr: {class: "form-control", placeholder: "Titre"}})}}
+            {{ form_label(form.stock)}}
+            {{ form_errors(form.stock)}}
+        </div>
+        <div class="">
+            {{ form_label(form.category_id)}}
+            {{ form_widget(form.category_id, {attr: {class: "form-control mb-3", placeholder: "Titre"}})}}
+            {{ form_errors(form.category_id)}}
+        </div>
+        <div class="">
+            {{ form_label(form.price)}}
+            {{ form_widget(form.price, {attr: {class: "form-control mb-3", type: "date"}})}}
+            {{ form_errors(form.price)}}
+        </div>
+        <div class="">
+            {{ form_label(form.picture)}}
+            {{ form_widget(form.picture, {attr: {class: "form-control mb-3", placeholder: "Titre"}})}}
+            {{ form_errors(form.picture)}}
+        </div>
+        <div class="div-btn-submit">
+            {{form_row(form.Ajouter, {attr: {class: "btn-submit"}})}}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

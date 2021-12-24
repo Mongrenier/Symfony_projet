@@ -69,7 +69,7 @@ class AnimalController extends AbstractController
             $em->flush();
 
             // On retourne sur la page des animaux
-            return $this->redirectToRoute("animal_list"); /*TODO Modifier pour rediriger sur interface admin ou autre*/
+            return $this->redirectToRoute("admin_animals");
         }
 
         return $this->render("admin/add_animal.html.twig", [
@@ -94,7 +94,7 @@ class AnimalController extends AbstractController
             //return $this->redirectToRoute("category_single", ['id' => $category->getId()]);
         }
 
-        return $this->render("admin/update.html.twig", [
+        return $this->render("update_animal.html.twig", [
             'form' => $form->createView()
         ]);
     }
@@ -106,6 +106,6 @@ class AnimalController extends AbstractController
         $em->remove($animal);
         $em->flush();
 
-        return $this->redirectToRoute("admin");
+        return $this->redirectToRoute("admin_animals");
     }
 }

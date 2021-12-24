@@ -2,10 +2,10 @@
 
 {% block body %}
     <div class="container-admin">
-        <h1 class="title-animal-list">Liste des animaux</h1>
-        <a href="{{ path('admin_add') }}" class="new-animal">
+        <h1 class="title-animal-list">Liste des produits</h1>
+        <a href="{{ path('admin_product_add') }}" class="new-animal">
             <button class="btn btn-primary">
-                <span>Nouvel animal</span>
+                <span>Nouveau produit</span>
             </button>
         </a>
         <table class="table table-striped">
@@ -13,24 +13,24 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nom</th>
-                <th scope="col">Age</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Prix</th>
                 <th scope="col">Image</th>
-                <th scope="col">Description</th>
-                <th scope="col">Date d'arrivée</th>
+                <th scope="col">Catégorie</th>
                 <th scope="col" style="text-align: center">Actions</th>
             </tr>
             </thead>
             <tbody>
-            {% for animal in animals %}
+            {% for product in products %}
                 <tr>
-                    <th scope="row">{{ animal.id }}</th>
-                    <td>{{ animal.name }}</td>
-                    <td>{{ animal.age }}</td>
-                    <td>{{ animal.picture }}</td>
-                    <td>{{ animal.description }}</td>
-                    <td>{{ animal.datearrival | date('d/m/Y') }}</td>
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.price }} €</td>
+                    <td>{{ product.picture }}</td>
+                    <td>{{ product.categoryId.name }}</td>
                     <td class="animal-action">
-                        <a href="{{ path('admin_update', {'id': animal.id}) }}" style="text-decoration: none; margin-right: 10px">
+                        <a href="{{ path('admin_update', {'id': product.id}) }}" style="text-decoration: none; margin-right: 10px">
                             <button class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -38,7 +38,7 @@
                                 </svg>
                             </button>
                         </a>
-                        <a href="{{ path('admin_delete', {'id': animal.id}) }}" style="text-decoration: none">
+                        <a href="{{ path('admin_delete', {'id': product.id}) }}" style="text-decoration: none">
                             <button class="btn btn-danger">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
