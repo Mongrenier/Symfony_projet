@@ -57,7 +57,9 @@
                                 On affiche une image par default
                             #}
                             {% if animal.picture %}
-                            <img src="{{ asset("img/uploads/" ~ animal.picture) }}" class="card-img-top" alt="animal_picture">
+                                <div class="card-img">
+                                    <img src="{{ asset("img/uploads/" ~ animal.picture) }}" class="card-img-top" alt="animal_picture">
+                                </div>
                             {% else %}
                                 <img src="/img/default_picture.jpg" class="card-img-top" alt="default_image">
                             {% endif %}
@@ -67,7 +69,13 @@
                                     <h6 class="card-title-2">{{ animal.age }} {{ 'ans' | trans }}</h6>
                                 </div>
 
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">
+                                    {% if animal.description  %}
+                                        {{ animal.description }}
+                                    {% else %}
+                                        {{ "no-desc" | trans }}
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -126,6 +134,20 @@
     .div-card-title {
         display: flex;
         align-items: center;
+    }
+    .card-img {
+        height: 315px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    .col {
+        height: 100%;
     }
     </style>
 {% endblock %}
