@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Form;
+
+
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -12,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class AnimalType extends AbstractType
+class UpdateAnimalType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -45,9 +47,13 @@ class AnimalType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 "label" => "Image (JPG/PNG)",
+                "data_class" => null,
+                'mapped' => false,
                 "required" => false
             ])
-            ->add("Ajouter", SubmitType::class);
+            ->add("update", SubmitType::class, [
+                "label" => "Mettre à jour",
+            ]);
     }
 
 }
