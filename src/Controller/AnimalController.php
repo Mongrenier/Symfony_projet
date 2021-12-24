@@ -4,13 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Animal;
 use App\Form\AnimalType;
+use App\Form\UpdateAnimalType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/animal', name: 'animal_')]
+
 class AnimalController extends AbstractController
 {
     
@@ -20,7 +22,7 @@ class AnimalController extends AbstractController
     }
 
     // Affichage du catalogue de tous les animaux
-    #[Route('/', name: 'list', methods: "GET")]
+    #[Route('/animal', name: 'animal_list', methods: "GET")]
     public function index(): Response
     {
         $animals = $this->doctrine->getRepository(Animal::class)->findAll();
@@ -31,7 +33,7 @@ class AnimalController extends AbstractController
     }
 
     // Affichage seulement des infos d'un animal après avoir cliqué dessus
-    #[Route('/info/{id}', name: "info", methods: "GET")]
+    #[Route('/animal/info/{id}', name: "animal_info", methods: "GET")]
     public function info(Animal $animal): Response {
 
         return $this->render("animal/info.html.twig", [
@@ -39,7 +41,7 @@ class AnimalController extends AbstractController
         ]);
     }
 
-    #[Route('/add', name:"add", methods: ["POST", "GET"])]
+    #[Route('admin/add', name:"add", methods: ["POST", "GET"])]
     public function append(Request $request, ManagerRegistry $mr): Response {
 
         $animal = new Animal;
@@ -73,5 +75,37 @@ class AnimalController extends AbstractController
         return $this->render("animal/add_animal.html.twig", [
             'form' => $form->createView()
         ]);
+    }
+
+    #[Route('admin/update/{id}', name:"update", methods: ["GET", "POST"])]
+    public function update(Animal $animal, Request $request): Response {
+
+        $form = $this->createForm(UpdateAnimalType::class, $animal);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->doctrine->getManager();
+
+            $em->persist($animal);
+            $em->flush();
+
+            //return $this->redirectToRoute("category_single", ['id' => $category->getId()]);
+        }
+
+        return $this->render("animal/update.html.twig", [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('admin/delete/{id}', name:"delete", methods:["GET", "POST"])]
+    public function delete(Animal $animal): Response
+    {
+        $em = $this->doctrine->getManager();
+        $em->remove($animal);
+        $em->flush();
+
+        return $this->redirectToRoute("animal_list");
     }
 }

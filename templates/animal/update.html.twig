@@ -26,13 +26,13 @@
         }
         .add-animal-title {
             text-align: center;
-            margin-bottom: 50px;
             margin-top: 50px;
+            margin-bottom: 50px;
         }
     </style>
 
     <div class="example-wrapper">
-        <h1 class="add-animal-title">{{ "appendAnimal" | trans }}</h1>
+        <h1 class="add-animal-title">{{ "updateAnimal" | trans }}</h1>
         {{ form_start(form) }}
         <div class="form-floating mb-3">
             {# form_widget  #}
@@ -66,7 +66,7 @@
             {{ form_errors(form.description)}}
         </div>
         <div class="div-btn-submit">
-            {{form_row(form.Ajouter, {attr: {class: "btn-submit"}})}}
+            {{form_row(form.update, {attr: {class: "btn-submit"}})}}
         </div>
         {{ form_end(form) }}
     </div>
