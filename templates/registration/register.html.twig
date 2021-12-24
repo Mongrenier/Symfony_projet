@@ -4,6 +4,12 @@
 
 {% block body %}
 
+    <style>
+        .form-control{
+            width: 30%;
+            margin-left: 10px;
+        }
+    </style>
 
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
