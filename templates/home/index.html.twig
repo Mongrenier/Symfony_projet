@@ -28,7 +28,6 @@
                 </div>
                 <div class="modal-body pb-4">
                     {{ form_start(form) }}
-                        {# form_widget  #}
                         {{ form_label(form.amount)}}
                         {{ form_widget(form.amount, {attr: {class: "form-control", min: 1, max: 99999}})}}
                         <label for="name">Nom du titulaire de la carte</label>
@@ -36,7 +35,7 @@
                         <label for="card-number">Numéro de carte</label>
                         <input type="text" name="card-number" class="form-control"/>
                         <label for="expiration-date">Date d'expiration</label>
-                        <input type="text" name="expiration-date" class="form-control"/>
+                        <input type="month" min="2021-12" name="expiration-date" class="form-control"/>
                         <label for="cvv">CVV</label>
                         <input type="text" name="cvv" class="form-control"/>
                         {{ form_widget(form.Payer, {attr: {class: "form-control btn btn-primay bg-primary text-white mt-3"}})}}
