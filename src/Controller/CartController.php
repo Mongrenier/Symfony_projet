@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {
 
@@ -17,7 +18,7 @@ class CartController extends AbstractController
     }
 
     //Récupération des produits du panier
-    #[Route('/cart', name: 'cart')]
+    #[Route('/', name: 'useless')]
     public function index(): Response
     {
         $cart = $this->doctrine->getRepository(Cart::class)->findAll();
@@ -25,4 +26,26 @@ class CartController extends AbstractController
             'Cart' => $cart,
         ]);
     }
+
+    //Suppression d'un obj du panier
+    #[Route("/delete/{id}", name: "delete")]
+    public function delete(Cart $cart): Response
+    {
+            $em = $this->doctrine->getManager();
+            $em->remove($cart);
+            $em->flush();
+
+        return $this->redirectToRoute("cart_useless");
+    }
+
+    //Supprime tout le panier
+    /*#[Route("/delete/all", name: "deleteEverything")]
+    public function deleteEverything(Cart $cart): Response
+    {
+            $em = $this->doctrine->getManager();
+            $em->remove($cart);
+            $em->flush();
+
+        return $this->redirectToRoute("cart_useless");
+    }*/
 }
