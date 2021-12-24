@@ -29,7 +29,7 @@ class Donation
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="donations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user_id;
 
