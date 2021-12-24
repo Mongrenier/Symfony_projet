@@ -2,19 +2,55 @@
 
 {% block body %}
 
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 1000px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .card-title {
+            font-weight: bold;
+        }
+        .card {
+            height: 100%;
+        }
+
+        .card-title-2 {
+            margin-left: 10px;
+        }
+        .div-card-title {
+            display: flex;
+            align-items: center;
+        }
+        .card-img {
+            height: 315px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+
     <div class="example-wrapper">
         <h1 class="title">Les meilleurs produits pour nos meilleurs amis</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for product in products %}
-                <a class="a-product" href={{ path('product_info', {id: product.id}) }} >
                     <div class="col">
                         <div class="card">
                             {#
                                 Si une image existe dans la bd pour cet produit on affiche l'image sinon
                                 On affiche une image par default
                             #}
-                            {% if animal.picture %}
-                                <img src="{{ asset("img/uploads/products" ~ product.picture) }}" class="card-img-top" alt="product_picture">
+                            {% if product.picture %}
+                                <img src="{{ asset("img/uploads/products/" ~ product.picture) }}" class="card-img-top" alt="product_picture">
                             {% else %}
                                 <img src="/img/missing_product.jpg" class="card-img-top" alt="missing_product">
                             {% endif %}
@@ -25,10 +61,12 @@
                                     <h6 class="card-title-2">{{ product.stock }}</h6>
                                 </div>
 
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">description</p>
                             </div>
                         </div>
                     </div>
-                </a>
+            {% endfor %}
         </div>
     </div>
+
+{% endblock %}
