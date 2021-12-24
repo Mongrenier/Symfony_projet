@@ -7,7 +7,7 @@
             margin: 1em auto;
             max-width: 1000px;
             width: 95%;
-            font: 18px/1.5 sans-serif;
+            font: 10px/1.5 sans-serif;
         }
         .example-wrapper code {
             background: #F5F5F5;
@@ -19,7 +19,9 @@
         }
         .card-title {
             font-weight: bold;
+            margin: 12px;
         }
+
         .card {
             height: 100%;
         }
@@ -33,22 +35,33 @@
         .card-title-2 {
             margin-left: 10px;
         }
-        .div-card-title {
-            display: flex;
-            align-items: center;
-        }
         .card-img {
             height: 315px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+<<<<<<< HEAD
+        .button {
+            background: #198754;
+            border-radius: 28px;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+            border-style: none;
+        }
+        .button:hover {
+            background: #1faa69;
+        }
+=======
         .centrerblock{
             display: flex;
             justify-content: center;
 
         }
 
+>>>>>>> e99096b5e89fb5edffb8dba2cc5673f466a28477
     </style>
 
     <div class="example-wrapper">
@@ -66,6 +79,11 @@
                             {% else %}
                                 <img src="/img/missing_product.jpg" class="card-img-top" alt="missing_product">
                             {% endif %}
+<<<<<<< HEAD
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    <h6 class="card-title-2">{{ product.price }} {{ 'price' | trans }}</h6>
+                                    <button class="button">{{ 'addcart' | trans }}</button>
+=======
                             <div class="card-body">
 <<<<<<< HEAD
                                 <div class="div-card-title centrerblock">
@@ -80,6 +98,7 @@
                                 </div>
 >>>>>>> 240ea55260ad20e922504e0ba55bf233bf100d01
                             </div>
+>>>>>>> e99096b5e89fb5edffb8dba2cc5673f466a28477
                         </div>
                     </div>
             {% endfor %}
