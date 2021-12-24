@@ -7,8 +7,5 @@ adopt: "Adopter !"
 price: "€"
 no-desc: "Aucune description n'est disponible"
 appendAnimal: "Ajouter un animal"
-<<<<<<< HEAD
 addcart: "Ajouter dans panier"
-=======
 updateAnimal: "Mettre à jour l'animal"
->>>>>>> e99096b5e89fb5edffb8dba2cc5673f466a28477
