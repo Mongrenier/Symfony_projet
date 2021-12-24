@@ -41,7 +41,7 @@ class AnimalController extends AbstractController
         ]);
     }
 
-    #[Route('admin/add', name:"add", methods: ["POST", "GET"])]
+    #[Route('admin/add', name:"admin_add", methods: ["POST", "GET"])]
     public function append(Request $request, ManagerRegistry $mr): Response {
 
         $animal = new Animal;
@@ -72,12 +72,12 @@ class AnimalController extends AbstractController
             return $this->redirectToRoute("animal_list"); /*TODO Modifier pour rediriger sur interface admin ou autre*/
         }
 
-        return $this->render("animal/add_animal.html.twig", [
+        return $this->render("admin/add_animal.html.twig", [
             'form' => $form->createView()
         ]);
     }
 
-    #[Route('admin/update/{id}', name:"update", methods: ["GET", "POST"])]
+    #[Route('admin/update/{id}', name:"admin_update", methods: ["GET", "POST"])]
     public function update(Animal $animal, Request $request): Response {
 
         $form = $this->createForm(UpdateAnimalType::class, $animal);
@@ -94,18 +94,18 @@ class AnimalController extends AbstractController
             //return $this->redirectToRoute("category_single", ['id' => $category->getId()]);
         }
 
-        return $this->render("animal/update.html.twig", [
+        return $this->render("admin/update.html.twig", [
             'form' => $form->createView()
         ]);
     }
 
-    #[Route('admin/delete/{id}', name:"delete", methods:["GET", "POST"])]
+    #[Route('admin/delete/{id}', name:"admin_delete", methods:["GET", "POST"])]
     public function delete(Animal $animal): Response
     {
         $em = $this->doctrine->getManager();
         $em->remove($animal);
         $em->flush();
 
-        return $this->redirectToRoute("animal_list");
+        return $this->redirectToRoute("admin");
     }
 }
